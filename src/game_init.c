@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_file_read.c                                     :+:      :+:    :+:   */
+/*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:31:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/08 15:22:52 by maroy            ###   ########.fr       */
+/*   Updated: 2022/12/08 22:43:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-char	*ft_file_read(t_game **tileset)
+t_game **ft_map_init(int argc, char argv, t_game *game)
 {
-	int	fd;
+	char	**map;
+	t_game	**tilemap;
 
-	fd = open("map.ber", O_RDONLY);
+	map = ft_read_map(argv[1]);
+	if (!map)
+		return (NULL);
+}
+
+int	ft_start_game(t_game *game, int argc char **argv)
+{
+	game->tilemap = map_init(argc, argv, game)
+	if (game->tilemap == NULL)
+		return (0);
+	else
+		return (1);
 }
