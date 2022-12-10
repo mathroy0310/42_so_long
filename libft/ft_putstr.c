@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/11/21 19:02:11 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 13:10:53 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	ft_putstr(const char *str, int *count)
 {
-	t_game	game;
+	int	i;
 
-	(void) argv;
-	(void) argc;
-
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+	if (!str)
+		*count += write(1, "(null)", 6);
+	else
+	{
+		i = 0;
+		while (str[i])
+			ft_putchar(str[i++], count);
+	}
 }

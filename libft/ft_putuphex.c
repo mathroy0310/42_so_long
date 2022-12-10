@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putuphex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/11/22 12:58:34 by maroy             #+#    #+#             */
+/*   Updated: 2022/12/08 13:16:44 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	ft_putuphex(unsigned long n, int *count)
 {
-	t_game	game;
-
-	(void) argv;
-	(void) argc;
-
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+	if (n > 9)
+	{
+		if (n < 16)
+			ft_putchar((n + 55), count);
+		else
+		{
+			ft_putuphex((n / 16), count);
+			ft_putuphex((n % 16), count);
+		}
+	}
+	else
+		ft_putchar((n + 48), count);
 }

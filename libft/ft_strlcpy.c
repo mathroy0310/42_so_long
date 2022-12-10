@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/18 12:31:12 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/07 15:00:20 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
+#include <string.h>
 
-
-int	main(int argc, char **argv)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	t_game	game;
+	size_t	i;
+	size_t	srclen;
 
-	(void) argv;
-	(void) argc;
-
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+	i = 0;
+	srclen = ft_strlen(src);
+	if (dst && src)
+	{
+		if (size != 0)
+		{
+			while (src[i] && i < (size - 1))
+			{
+				dst[i] = src[i];
+				i++;
+			}
+			dst[i] = '\0';
+		}
+	}
+	return (srclen);
 }

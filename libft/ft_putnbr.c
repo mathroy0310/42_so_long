@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/11/21 19:01:29 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 13:11:01 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	ft_putnbr(int n, int *count)
 {
-	t_game	game;
-
-	(void) argv;
-	(void) argc;
-
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+	if (n == -2147483648)
+	{
+		ft_putstr("-2147483648", count);
+		return ;
+	}
+	if (n < 0)
+	{
+		n = -n;
+		ft_putchar(('-'), count);
+	}
+	if (n >= 10)
+		ft_putnbr(n / 10, count);
+	ft_putchar(n % 10 + 48, count);
 }

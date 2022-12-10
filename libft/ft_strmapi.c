@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/24 14:06:08 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 15:22:45 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_game	game;
+	char	*str;
+	size_t	i;
 
-	(void) argv;
-	(void) argc;
-
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+	if (!s || !f)
+		return (NULL);
+	if (s)
+	{
+		i = 0;
+		str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+		if (!str)
+			return (NULL);
+		while (i < ft_strlen(s))
+		{
+			str[i] = f((unsigned int)i, s[i]);
+			i++;
+		}
+		str[i] = 0;
+		return (str);
+	}
+	return (NULL);
 }

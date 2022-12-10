@@ -6,54 +6,49 @@
 #    By: maroy <maroy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 14:06:34 by maroy             #+#    #+#              #
-#    Updated: 2022/12/08 15:35:06 by maroy            ###   ########.fr        #
+#    Updated: 2022/12/09 19:01:24 by maroy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
+NAME		= so_long
 
+MAKELIBFT	= $(MAKE) -C libft
 
-CFLAGS	=	-g -Wall -Werror -Wextra -I. -I./$(INCDIR)
-CC = gcc
-RM		=	rm -f
-RM_F		=	rm -rf
+INCDIR		= include/
+SRCDIR		= src/
 
-INCDIR= libs/
+CFILES		= main.c errors.c game/game_init.c map/map_reader.c
+HFILES		= so_long.h
 
-SRCDIR = src/
-SRCS =	src/main.c
+INCS		= $(addprefix $(INCDIR)/, $(HFILES))
+SRCS		= $(addprefix $(SRCDIR)/, $(CFILES))
+OBJS 		= $(SRCS:.c=.o)
 
-OBJDIR	=	bin/
-OBJS	=	$(patsubst $(SRCDIR)%.c,$(OBJDIR)%.o,$(SRCS))
+CC			= clang
+CFLAGS		= -Wall -Wextra -Werror
+RM			= rm -rf
 
-LIBFT = libft.a
-LIBFTDIR = libs/libft/
+%.o:		%.c
+			$(CC) $(CFLAGS) -Ilibft -I$(INCDIR) -c $< -o $@
 
+$(NAME):	$(OBJS) 
+			$(MAKELIBFT)
+			$(CC) $(CFLAGS) $(OBJS) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit -o $(NAME)
 
-all : do_libft $(NAME)
- 
-${NAME}: $(OBJS)
-	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $@ $(OBJS) $(LIBFTDIR)$(LIBFT)
-
-$(OBJS): $(OBJDIR)%.o : $(SRCDIR)%.c $(INC) | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJDIR):
-	mkdir -p $@
+all:		$(NAME)
 
 clean:
-	@$(RM_F) $(OBJDIR)
-	@$(MAKE) --no-print-directory -C $(LIBFTDIR) clean
+			$(MAKELIBFT) clean
+			$(RM) $(OBJS)
 
+fclean:		clean
+			$(MAKELIBFT) fclean
+			$(RM) $(NAME)
 
-fclean: clean
-	@$(RM) $(NAME)
-	@$(MAKE) --no-print-directory -C $(LIBFTDIR) fclean
+re:			fclean all
 
+norm:
+			$(MAKELIBFT) norm
+			norminette $(SRCS) $(INCS)
 
-re: fclean all
-
-do_libft:
-	@$(MAKE) -C $(LIBFTDIR)
-
-.PHONY:		all clean fclean re header
+.PHONY:		all clean fclean re norm

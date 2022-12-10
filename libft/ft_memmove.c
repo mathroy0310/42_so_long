@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/18 12:12:06 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 15:03:55 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_game	game;
+	size_t	i;
+	char	*csrc;
+	char	*cdst;
 
-	(void) argv;
-	(void) argc;
-
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+	csrc = (char *)src;
+	cdst = (char *)dst;
+	i = -1;
+	if (!csrc || !cdst)
+		return (NULL);
+	if (csrc > cdst)
+	{
+		while (++i < len)
+			cdst[i] = csrc[i];
+	}
+	else
+	{
+		while (++i != len)
+			cdst[len - i - 1] = csrc[len - i - 1];
+	}
+	return (dst);
 }

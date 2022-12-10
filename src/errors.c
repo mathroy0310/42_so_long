@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
+/*   Updated: 2022/12/09 18:47:20 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../libft/libft.h"
 
-
-int	main(int argc, char **argv)
+void	ft_warning_print(char *message)
 {
-	t_game	game;
+	ft_printf("\033[1;33m" "Warning:\n		%s\n", message);
+}
 
-	(void) argv;
-	(void) argc;
+int	ft_error_print(char *message)
+{
+	ft_printf("\033[1;31m" "Error:\n		%s\n", message);
+	return (0);
+}
 
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+void	*ft_error_print_null(char *message)
+{
+	ft_printf("\033[1;31m" "Error:\n		%s\n", message);
+	return (NULL);
 }

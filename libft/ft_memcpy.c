@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:51:02 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/18 12:06:48 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 15:00:22 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
-	t_game	game;
+	size_t	i;
+	char	*dst1;
+	char	*src1;
 
-	(void) argv;
-	(void) argc;
-
-	// if (!ft_start_game(&game, argc, argv))
-	// 	return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
-	mlx_loop(game.mlx);
-	return (1);
+	i = 0;
+	if (!dst || !src)
+		return (dst);
+	dst1 = (char *)dst;
+	src1 = (char *)src;
+	if (dst1 == src1)
+		return (dst1);
+	while (i < len)
+	{
+		dst1[i] = src1[i];
+		i++;
+	}
+	return (dst);
 }
