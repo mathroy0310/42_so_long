@@ -22,9 +22,9 @@ static int	ft_linecount(char *mapfile)
 	int		fd;
 	char	c;
 
-	fd = open(fd, O_RDONLY);
+	fd = open(mapfile, O_RDONLY);
 	if (fd > 0)
-		return (NULL);
+		return (0);
 	linecount = 1;
 	while (linecount != 0)
 	{
@@ -43,11 +43,10 @@ static int	ft_linecount(char *mapfile)
 static char	**ft_alloc_columns(char *mapfile)
 {
 	char	**map;
-	int		fd;
 	int		linecount;
 
 	map = NULL;
-	linecount = ft_linecount(*mapfile);
+	linecount = ft_linecount(mapfile);
 	return (map);
 }
 

@@ -17,7 +17,7 @@ MAKELIBFT	= $(MAKE) -C libft
 INCDIR		= include/
 SRCDIR		= src/
 
-CFILES		= main.c errors.c game/game_init.c map/map_reader.c
+CFILES		= main.c errors.c game/game_init.c map/map_reader.c map/map_checker.c
 HFILES		= so_long.h
 
 INCS		= $(addprefix $(INCDIR)/, $(HFILES))
@@ -32,8 +32,11 @@ RM			= rm -rf
 			$(CC) $(CFLAGS) -Ilibft -I$(INCDIR) -c $< -o $@
 
 $(NAME):	$(OBJS) 
+			@echo '\033[2;37m' "	- Making libft..."$(NONE)
 			$(MAKELIBFT)
+			@echo '\033[2;37m' "	- Compiling $(NAME)"$(NONE)
 			$(CC) $(CFLAGS) $(OBJS) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit -o $(NAME)
+			@echo '\033[32m' "- Compiled -"$(NONE)
 
 all:		$(NAME)
 
