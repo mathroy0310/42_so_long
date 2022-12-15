@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/18 14:02:28 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/25 13:39:59 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
 
-void	ft_warning_print(char *message)
+char	*ft_strrchr(const char *s, int c)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	unsigned int				i;
+	unsigned char				*last_occurence;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	last_occurence = NULL;
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			last_occurence = (unsigned char *)&s[i];
+		i++;
+	}
+	if (s[i] == (unsigned char)c)
+		return ((char *)&s[i]);
+	return ((char *)last_occurence);
 }

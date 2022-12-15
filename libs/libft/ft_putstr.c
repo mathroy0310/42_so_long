@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/11/21 19:02:11 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 13:10:53 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
 
-void	ft_warning_print(char *message)
+void	ft_putstr(const char *str, int *count)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	int	i;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	if (!str)
+		*count += write(1, "(null)", 6);
+	else
+	{
+		i = 0;
+		while (str[i])
+			ft_putchar(str[i++], count);
+	}
 }

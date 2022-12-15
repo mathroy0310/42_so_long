@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/24 14:43:57 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 12:47:10 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
 
-void	ft_warning_print(char *message)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	unsigned int	i;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			(*f)(i, &s[i]);
+			i++;
+		}
+	}
 }

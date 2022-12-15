@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/11/09 13:27:53 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 16:34:12 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
 
-void	ft_warning_print(char *message)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	t_list	*cur;
+	t_list	*next;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	if (!lst || !del)
+		return ;
+	cur = *lst;
+	while (cur)
+	{
+		next = cur->next;
+		ft_lstdelone(cur, del);
+		cur = next;
+	}
+	*lst = NULL;
 }

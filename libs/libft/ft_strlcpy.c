@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/18 12:31:12 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/07 15:00:20 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
+#include <string.h>
 
-void	ft_warning_print(char *message)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	size_t	i;
+	size_t	srclen;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	i = 0;
+	srclen = ft_strlen(src);
+	if (dst && src)
+	{
+		if (size != 0)
+		{
+			while (src[i] && i < (size - 1))
+			{
+				dst[i] = src[i];
+				i++;
+			}
+			dst[i] = '\0';
+		}
+	}
+	return (srclen);
 }

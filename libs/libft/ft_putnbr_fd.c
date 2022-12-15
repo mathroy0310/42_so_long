@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/24 13:58:39 by maroy             #+#    #+#             */
+/*   Updated: 2022/10/24 15:24:57 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
 
-void	ft_warning_print(char *message)
+void	ft_putnbr_fd(int n, int fd)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	unsigned int	nbr;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	if (n < 0)
+	{
+		nbr = -n;
+		ft_putchar_fd('-', fd);
+	}
+	else
+	{
+		nbr = n;
+	}
+	if (n / 10 != 0)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd(nbr % 10 + '0', fd);
 }

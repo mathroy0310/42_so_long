@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/18 16:07:34 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 15:20:26 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
 
-void	ft_warning_print(char *message)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	size_t			i;
+	unsigned char	*cs1;
+	unsigned char	*cs2;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	if (n == 0 || !s1 || !s2)
+		return (0);
+	i = 0;
+	cs1 = (unsigned char *)s1;
+	cs2 = (unsigned char *)s2;
+	while (i < n)
+	{
+		if (cs1[i] != cs2[i])
+			return (cs1[i] - cs2[i]);
+		i++;
+	}
+	return (0);
 }

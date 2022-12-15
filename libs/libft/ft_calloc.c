@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/20 14:50:26 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/09 16:47:13 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
+#include <limits.h>
 
-void	ft_warning_print(char *message)
+void	*ft_calloc(size_t count, size_t size)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	void	*b;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	b = malloc(count * size);
+	if (!b)
+		return (b);
+	ft_bzero(b, count * size);
+	return (b);
 }

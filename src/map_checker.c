@@ -15,14 +15,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../libs/so_long.h"
 
 static void	ft_save_file_content(t_game *game, char **argv)
 {
 	int		fd;
 	int		linecount;
-	char 	*str;
-
+	char	*str;
 
 	str = NULL;
 	linecount = 0;
@@ -41,10 +40,10 @@ static void	ft_save_file_content(t_game *game, char **argv)
 	(void)game; //besoin pour maloc
 }
 
-static void ft_argc_ext_checker(int argc, char **argv)
+static void	ft_argc_ext_checker(int argc, char **argv)
 {
-	const char *ber;
-	int 		fd;
+	const char	*ber;
+	int			fd;
 	char		*s;
 
 	ber = ".ber\0";
@@ -69,10 +68,8 @@ static void ft_argc_ext_checker(int argc, char **argv)
 	close(fd);
 }
 
-void ft_read_mapfile(t_game *game, int argc, char **argv)
+void	ft_read_mapfile(t_game *game, int argc, char **argv)
 {
 	ft_argc_ext_checker(argc, argv);
 	ft_save_file_content(game, argv);
 }
-
-

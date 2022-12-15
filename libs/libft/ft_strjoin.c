@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/21 01:23:46 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 16:38:38 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "libft.h"
 
-void	ft_warning_print(char *message)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	int		lens1;
+	int		lens2;
+	char	*dst;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	if (!s1 || !s2)
+		return (NULL);
+	lens1 = ft_strlen(s1);
+	lens2 = ft_strlen(s2);
+	dst = malloc(lens1 + lens2 + 1);
+	if (!dst)
+		return (NULL);
+	ft_memmove(dst, s1, lens1);
+	ft_memmove(dst + lens1, s2, lens2);
+	dst[lens1 + lens2] = '\0';
+	return (dst);
 }

@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/18 15:50:26 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 15:04:59 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include"libft.h"
 
-void	ft_warning_print(char *message)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	size_t			i;
+	unsigned char	*str;
+	void			*b;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	if (!s)
+		return (NULL);
+	i = 0;
+	str = (unsigned char *)s;
+	b = NULL;
+	while (i < n)
+	{
+		if (str[i] == (unsigned char)c)
+		{
+			b = &str[i];
+			break ;
+		}
+		i++;
+	}
+	return (b);
 }

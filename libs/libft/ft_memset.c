@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 13:49:36 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/17 18:36:20 by maroy             #+#    #+#             */
+/*   Updated: 2022/11/11 15:03:31 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include"libft.h"
 
-void	ft_warning_print(char *message)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	size_t	i;
+	char	*str;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
+	if (!b)
+		return (b);
+	str = (char *)b;
+	i = 0;
+	while (i < len)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (str);
 }
