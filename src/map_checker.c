@@ -15,16 +15,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../so_long.h"
 
-void	ft_save_file_content(t_game *game, char **argv)
+static void	ft_save_file_content(t_game *game, char **argv)
 {
 	int		fd;
 	int		linecount;
 	char 	*str;
 
+
+	str = NULL;
 	linecount = 0;
-	fd = open(str[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	while ((linecount == 0) || (str != NULL && linecount > 0))
 	{
 		free(str);
@@ -35,13 +37,8 @@ void	ft_save_file_content(t_game *game, char **argv)
 		ft_error_print("The file is missing content.");
 	close(fd);
 	//malloc
-}
-
-
-void ft_read_mapfile(t_game *game, int argc, char **argv)
-{
-	ft_argc_ext_checker(argc, argv);
-	ft_save_file_content(game, argv);
+	(void)argv; //besoin pour maloc
+	(void)game; //besoin pour maloc
 }
 
 static void ft_argc_ext_checker(int argc, char **argv)
@@ -50,14 +47,14 @@ static void ft_argc_ext_checker(int argc, char **argv)
 	int 		fd;
 	char		*s;
 
-	ber = ".ber\0"
+	ber = ".ber\0";
 	if (argc == 1)
 		ft_error_print("Need to specify the map in args.");
 	if (argc > 2)
 	{
 		ft_warning_print("Only the first arg gonna be used.");
 	}
-	fd = open(str[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
 		ft_error_print("Map file not found.");
@@ -71,3 +68,11 @@ static void ft_argc_ext_checker(int argc, char **argv)
 	free(s);
 	close(fd);
 }
+
+void ft_read_mapfile(t_game *game, int argc, char **argv)
+{
+	ft_argc_ext_checker(argc, argv);
+	ft_save_file_content(game, argv);
+}
+
+

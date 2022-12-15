@@ -6,12 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 10:33:32 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/15 10:46:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
-#include "../libft/libft.h"
+#include "../so_long.h"
 
 void	ft_warning_print(char *message)
 {

@@ -6,15 +6,15 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:34:55 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/15 10:33:23 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/15 10:46:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include "libft/libft.h"
+# include "mlx/mlx.h"
 
 typedef struct s_vector
 {
@@ -54,6 +54,6 @@ void	ft_warning_print(char *message);
 void	ft_error_print(char *message);
 
 /*SRC/GAME*/
-void ft_read_mapfile(t_game *game, int argc, char **argv)
+void ft_read_mapfile(t_game *game, int argc, char **argv);
 
 #endif

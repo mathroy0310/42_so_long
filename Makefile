@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 14:06:34 by maroy             #+#    #+#              #
-#    Updated: 2022/12/15 10:18:01 by marvin           ###   ########.fr        #
+#    Updated: 2022/12/15 10:48:01 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,11 @@ NAME		= so_long
 
 MAKELIBFT	= $(MAKE) -C libft
 
-INCDIR		= include/
 SRCDIR		= src/
 
-CFILES		= main.c errors.c map/map_checker.c
-HFILES		= so_long.h
+CFILES		= main.c errors.c map_checker.c
 
-INCS		= $(addprefix $(INCDIR)/, $(HFILES))
+INCS		= so_long.h
 SRCS		= $(addprefix $(SRCDIR)/, $(CFILES))
 OBJS 		= $(SRCS:.c=.o)
 
