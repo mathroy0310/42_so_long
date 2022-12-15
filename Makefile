@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maroy <maroy@student.42.fr>                +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 14:06:34 by maroy             #+#    #+#              #
-#    Updated: 2022/12/09 19:01:24 by maroy            ###   ########.fr        #
+#    Updated: 2022/12/15 10:18:01 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ MAKELIBFT	= $(MAKE) -C libft
 INCDIR		= include/
 SRCDIR		= src/
 
-CFILES		= main.c errors.c game/game_init.c map/map_reader.c map/map_checker.c
+CFILES		= main.c errors.c map/map_checker.c
 HFILES		= so_long.h
 
 INCS		= $(addprefix $(INCDIR)/, $(HFILES))

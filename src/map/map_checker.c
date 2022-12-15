@@ -17,35 +17,57 @@
 
 #include "../include/so_long.h"
 
-int ft_extension_cmp(char *name, char *ext)
+void	ft_save_file_content(t_game *game, char **argv)
 {
-	int namelen;
-	int extlen;
-	int i;
+	int		fd;
+	int		linecount;
+	char 	*str;
 
-	i = -1;
-	namelen = ft_strlen(name);
-	extlen = ft_strlen(ext);
-	name += namelen - extlen;
-	while (name[++i])
+	linecount = 0;
+	fd = open(str[1], O_RDONLY);
+	while ((linecount == 0) || (str != NULL && linecount > 0))
 	{
-		if (name[i] != ext[i])
-			return(0);
+		free(str);
+		str = get_next_line(fd);
+		linecount++;
 	}
-	return (1);
+	if (linecount == 1)
+		ft_error_print("The file is missing content.");
+	close(fd);
+	//malloc
 }
 
 
-int ft_file_checker(int argc, char *mapfile)
+void ft_read_mapfile(t_game *game, int argc, char **argv)
 {
+	ft_argc_ext_checker(argc, argv);
+	ft_save_file_content(game, argv);
+}
+
+static void ft_argc_ext_checker(int argc, char **argv)
+{
+	const char *ber;
+	int 		fd;
+	char		*s;
+
+	ber = ".ber\0"
 	if (argc == 1)
-		return(ft_error_print("Need to specify the map in args"));
+		ft_error_print("Need to specify the map in args.");
 	if (argc > 2)
 	{
-		ft_warning_print("Only the first arg gonna be used");
-		return(0);
+		ft_warning_print("Only the first arg gonna be used.");
 	}
-	if (!ft_extension_cmp(mapfile, ".ber"))
-		return (ft_error_print("Map should be a .ber file"));
-	return (1);
+	fd = open(str[1], O_RDONLY);
+	if (fd == -1)
+	{
+		ft_error_print("Map file not found.");
+	}
+	s = ft_strtrim(argv[1], ber);
+	if (ft_strlen(s) == ft_strlen(argv[1]) - 1)
+	{
+		free(s);
+		ft_error_print("Map should be a .ber file.");
+	}
+	free(s);
+	close(fd);
 }

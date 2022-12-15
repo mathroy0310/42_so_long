@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:17:16 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/09 16:43:25 by maroy            ###   ########.fr       */
+/*   Updated: 2022/12/15 10:25:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,11 @@ static char	*ft_read(int fd, char *str)
 	return (str);
 }
 
-char	*get_next_line(int fd, char **str)
+char	*get_next_line(int fd)
 {
 	static char	*buff;
 	char		*line;
 
-	(void)str;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	buff = ft_read(fd, buff);

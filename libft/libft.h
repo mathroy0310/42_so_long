@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 12:41:20 by maroy             #+#    #+#             */
-/*   Updated: 2022/12/09 18:50:59 by maroy            ###   ########.fr       */
+/*   Updated: 2022/12/15 10:25:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_list
 }					t_list;
 
 //GNL
-char				*get_next_line(int fd, char **str);
+char				*get_next_line(int fd);
 
 //ft_printf
 int					ft_printf(const char *format, ...);
