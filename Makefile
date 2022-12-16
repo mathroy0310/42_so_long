@@ -6,7 +6,7 @@
 #    By: maroy <maroy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 14:06:34 by maroy             #+#    #+#              #
-#    Updated: 2022/12/15 14:18:21 by maroy            ###   ########.fr        #
+#    Updated: 2022/12/15 17:35:34 by maroy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= so_long
 MAKELIBFT	= $(MAKE) -C libs/libft
 
 
-CFILES		= main.c errors.c map_checker.c
+CFILES		= main.c errors.c map_checker.c map_reader.c
 
 SRCDIR		= src/
 INCDIR	=	libs/
