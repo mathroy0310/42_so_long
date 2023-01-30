@@ -6,13 +6,13 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 21:56:46 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/08 13:16:08 by maroy            ###   ########.fr       */
+/*   Updated: 2023/01/12 14:46:10 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_print(va_list args, const char *format, int *count, int *i)
+void	ft_print(va_list args, char *format, int *count, int *i)
 {
 	if (format[*i] == '%')
 		ft_putchar(format[*i], count);
@@ -33,7 +33,7 @@ static void	ft_print(va_list args, const char *format, int *count, int *i)
 	*i += 1;
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(char *format, ...)
 {
 	va_list	args;
 	int		i;
@@ -57,3 +57,4 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
+

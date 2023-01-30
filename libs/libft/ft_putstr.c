@@ -6,13 +6,13 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:02:11 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/08 13:10:53 by maroy            ###   ########.fr       */
+/*   Updated: 2023/01/12 14:48:17 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(const char *str, int *count)
+void	ft_putstr(char *str, int *count)
 {
 	int	i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:17:16 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/15 10:25:17 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/12 14:48:13 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,26 @@ static char	*ft_next_line(char *str)
 
 static char	*ft_read(int fd, char *str)
 {
-	char	*tmp;
+	char	*buff;
 	int		bytes;
 
-	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!tmp)
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff)
 		return (0);
 	bytes = 1;
 	while (!ft_strchr(str, '\n') && bytes != 0)
 	{
-		bytes = read(fd, tmp, BUFFER_SIZE);
+		bytes = read(fd, buff, BUFFER_SIZE);
 		if (bytes == -1)
 		{
-			free(tmp);
+			free(buff);
 			free(str);
 			return (0);
 		}
-		tmp[bytes] = '\0';
-		str = ft_strjoin(str, tmp);
+		buff[bytes] = '\0';
+		str = ft_strjoin(str, buff);
 	}
-	free(tmp);
+	free(buff);
 	return (str);
 }
 
