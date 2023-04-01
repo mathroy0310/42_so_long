@@ -5,71 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 15:41:47 by maroy             #+#    #+#             */
-/*   Updated: 2023/01/30 17:04:56 by maroy            ###   ########.fr       */
+/*   Created: 2023/04/01 13:43:56 by maroy             #+#    #+#             */
+/*   Updated: 2023/04/01 14:43:40 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-static int	ft_tilechecker(char c)
+void	ft_error(t_game ***g, char *err)
 {
-	if (c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P')
-		return (1);
-	return (0);
+	int	x;
+
+	x = 0;
+	while ((**g)->map[x])
+	{
+		free((**g)->map[x]);
+		x++;
+	}
+	free((**g)->map);
+	ft_printf("%s", err);
+	exit(EXIT_FAILURE);
 }
 
-static int	ft_wallchecker(int x, int y, char c, t_game *game)
-{
-	if (x == 0 || y == 0 || game->winsize.x - 1 == x || game->winsize.y
-		- 1 == y)
-	{
-		if (c == '1')
-			return (0);
-		else
-			return (1);
-	}
-	return (-1);
-}
-
-static int	ft_exitplayernb(char c)
-{
-	static int	playernb;
-	static int	exitnb;
-
-	if (c == 'P')
-	{
-		playernb++;
-		return (playernb);
-	}
-	if (c == 'E')
-	{
-		exitnb++;
-		return (exitnb);
-	}
-	return (0);
-}
-
-void	ft_check_map(t_game *game)
+static void	check_is_rectangular(t_game **game)
 {
 	int	x;
 	int	y;
+	int	height;
+	int	backup;
 
-	y = -1;
-	while (game->gamedata[++y])
+	y = 0;
+	backup = 0;
+	height = ft_get_height((*game)->map);
+	while (y != height)
 	{
-		x = -1;
-		while (game->gamedata[y][++x])
+		x = 0;
+		while ((*game)->map[y][x] != '\0')
+			x++;
+		y++;
+		if (backup != 0)
 		{
-			if (game->winsize.x > x && game->winsize.y > y
-				&& ft_tilechecker(game->gamedata[y][x]) == 0)
-				ft_error_print("Reading the map file");
-			if (game->winsize.x > x && game->winsize.y > y && ft_wallchecker(x,
-					y, game->gamedata[y][x], game) > 0)
-				ft_error_print("The Map limit border should be walls");
-			if (game->winsize.x > x && game->winsize.y > y
-				&& ft_exitplayernb(game->gamedata[y][x]) == 2 && ft_exitplayernb(game->gamedata[y][x]) != 1)
-				ft_error_print("Must only be one and Exit and Player");
+			if (backup != x)
+				ft_error(&game,
+					"\033[1;31m ERROR : map is not rectangular	\033[0m");
 		}
+		else
+			backup = x;
 	}
+}
+
+static int	check_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != '1')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static void	check_is_surrounded_by_walls(t_game **g)
+{
+	int		i;
+	char	*err;
+
+	err = "\033[1;31m ERROR : map is not surrounded by walls	\033[0m";
+	if (check_line((*g)->map[0]))
+		ft_error(&g, err);
+	i = ft_get_height((*g)->map) - 1;
+	while (i)
+	{
+		if ((*g)->map[i][0] != '1' ||
+			(*g)->map[i][ft_strlen((*g)->map[i]) - 1] != '1')
+		{
+			ft_error(&g, err);
+		}
+		i--;
+	}
+	if (check_line((*g)->map[ft_get_height((*g)->map) - 1]))
+		ft_error(&g, err);
+}
+
+void	ft_valid_map(t_game *game)
+{
+	check_is_rectangular(&game);
+	check_is_surrounded_by_walls(&game);
+	check_elements(&game);
 }

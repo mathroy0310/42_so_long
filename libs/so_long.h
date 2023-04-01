@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:34:55 by maroy             #+#    #+#             */
-/*   Updated: 2023/01/30 15:55:51 by maroy            ###   ########.fr       */
+/*   Updated: 2023/04/01 14:44:39 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,42 @@ typedef struct s_vector
 	int	y;
 }	t_vector;
 
-// typedef enum e_tiletype
-// {
-// 	EMPTY = '0',
-// 	WALL = '1',
-// 	COLLECTABLE = 'C',
-// 	PLAYER = 'P',
-// 	EXIT = 'E'
-// }	t_tiletype;
-
-// typedef struct s_tile
-// {
-// 	t_tiletype		type;
-// 	t_vector		position;
-// }	t_tile;
-
 typedef struct s_game
 {
 	void		*win;
+	void		*img;
 	void		*mlx;
-	t_vector	winsize;
-	t_vector	charpos;
-	t_vector	exitpos;
+	t_vector	wsize;
+	t_vector	p;
 	int			nbmoves;
-	char		**gamedata;
-}			t_game;
+	char		**map;
+	int			nbcollect;
+}				t_game;
 
-//errors.c
-void	ft_warning_print(char *message);
-void	ft_error_print(char *message);
+typedef struct s_game_map
+{
+	int			c;
+	int			p;
+	int			e;
+	t_vector	size;
+}				t_game_map;
 
-/*SRC/GAME*/
-void	ft_read_mapfile(t_game *game, int argc, char **argv);
+// Player Movement
+void	ft_move_up(t_game **g);
+void	ft_move_down(t_game **g);
+void	ft_move_right(t_game **g);
+void	ft_move_left(t_game **g);
 
-int		ft_key_press_hook(int keycode, t_game *game);
+// File checker
+void	ft_valid_file(char *file_line);
+// get map
+char	**ft_get_map(char *map_file);
+int		ft_get_height(char **map);
 
-void	ft_check_map(t_game *game);
+//map checker
+void	ft_valid_map(t_game *game);
+void	ft_error(t_game ***g, char *err);
+//map checker utils
+void	check_elements(t_game **game);
 
 #endif

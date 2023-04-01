@@ -6,7 +6,7 @@
 #    By: maroy <maroy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 14:06:34 by maroy             #+#    #+#              #
-#    Updated: 2023/01/19 17:07:13 by maroy            ###   ########.fr        #
+#    Updated: 2023/04/01 14:44:58 by maroy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MAKELIBFT	= $(MAKE) -C libs/libft
 
 
 
-CFILES		= main.c errors.c map_checker.c map_reader.c mlx_keyhook.c
+CFILES		= main.c player_movement.c file_checker.c get_map.c  map_checker.c  map_checker_utils.c         
 
 SRCDIR		= src/
 INCDIR	=	libs/

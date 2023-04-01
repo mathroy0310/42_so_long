@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:28:40 by maroy             #+#    #+#             */
-/*   Updated: 2023/01/12 12:56:32 by maroy            ###   ########.fr       */
+/*   Created: 2022/10/20 16:11:37 by maroy             #+#    #+#             */
+/*   Updated: 2023/04/01 13:00:23 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include"libft.h"
 
-void	ft_warning_print(char *message)
+char	*ft_strdup(char *s1)
 {
-	ft_printf("\033[1;33m" "Warning:\n%s\n", message);
-}
+	char	*s2;
+	int		len;
+	int		i;
 
-void	ft_error_print(char *message)
-{
-	ft_printf("\033[1;31m" "Error:\n%s\n", message);
-	exit(1);
+	if (!s1)
+		return (NULL);
+	len = (int) ft_strlen(s1) + 1;
+	s2 = malloc(sizeof (char) * len);
+	if (s2 == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = 0;
+	return (s2);
 }
