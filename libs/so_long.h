@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:34:55 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/01 14:44:39 by maroy            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:36:15 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,37 @@
 # include "./libft/libft.h"
 # include "../mlx/mlx.h"
 
-# define KEY_ESC 53
-# define KEY_LEFT_ARROW 123
-# define KEY_UP_ARROW 126
-# define KEY_RIGHT_ARROW 124
-# define KEY_DOWN_ARROW 125
+# define SPRITESIZE 32
 
-# define WALL "./sprite/BlueSuare.xpm"
-# define EMPTY "./sprite/GreenSquare.xpm"
-# define COLLECTABLE "./sprite/BlueSquare.xpm"
-# define PLAYER "./sprite/RedSquare.xpm"
-# define EXIT "./sprite/YellowSquare.xpm"
+# define WALL_SPRITE "./sprite/Walls.xpm"
+# define EMPTY_SPRITE "./sprite/Empty.xpm"
+# define COLLECTIBLE_SPRITE "./sprite/YellowSquare.xpm"
+# define PLAYER_SPRITE "./sprite/Player.xpm"
+# define EXIT_SPRITE "./sprite/ExitOpen.xpm"
 
-typedef struct s_vector
+typedef struct s_vect2i
 {
 	int	x;
 	int	y;
-}	t_vector;
+}	t_vect2i;
+
+typedef struct s_img
+{
+	void	*wall;
+	void	*empty;
+	void	*collectible;
+	void	*player;
+	void	*exit;
+}	t_img;
 
 typedef struct s_game
 {
 	void		*win;
 	void		*img;
+	t_img		sprite;
 	void		*mlx;
-	t_vector	wsize;
-	t_vector	p;
+	t_vect2i	wsize;
+	t_vect2i	player_pos;
 	int			nbmoves;
 	char		**map;
 	int			nbcollect;
@@ -52,14 +58,14 @@ typedef struct s_game_map
 	int			c;
 	int			p;
 	int			e;
-	t_vector	size;
+	t_vect2i	s;
 }				t_game_map;
 
 // Player Movement
-void	ft_move_up(t_game **g);
-void	ft_move_down(t_game **g);
-void	ft_move_right(t_game **g);
-void	ft_move_left(t_game **g);
+void	ft_move_up(t_game *g);
+void	ft_move_down(t_game *g);
+void	ft_move_right(t_game *g);
+void	ft_move_left(t_game *g);
 
 // File checker
 void	ft_valid_file(char *file_line);
@@ -69,8 +75,17 @@ int		ft_get_height(char **map);
 
 //map checker
 void	ft_valid_map(t_game *game);
-void	ft_error(t_game ***g, char *err);
+void	ft_error(t_game *g, char *err);
 //map checker utils
-void	check_elements(t_game **game);
+void	check_elements(t_game *game);
+
+void	ft_render(t_game *game);
+
+int		ft_collectible(t_game *game);
+
+void	ft_you_win(t_game *game);
+
+void	check_is_map_possibe(t_game *game);
+
 
 #endif

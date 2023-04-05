@@ -6,13 +6,13 @@
 #    By: maroy <maroy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 14:35:20 by maroy             #+#    #+#              #
-#    Updated: 2023/04/01 12:44:56 by maroy            ###   ########.fr        #
+#    Updated: 2023/04/05 13:31:49 by maroy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS  = ft_printf.c ft_putchar.c \
 		ft_putstr.c ft_putnbr.c ft_putunnbr.c ft_puthex.c ft_putuphex.c \
-		ft_putpointer.c get_next_line.c get_next_line_utils.c ft_split.c ft_strdup.c
+		ft_putpointer.c get_next_line.c get_next_line_utils.c ft_split.c ft_strdup.c ft_itoa.c
  
 OBJS   = ${SRCS:.c=.o}
  
