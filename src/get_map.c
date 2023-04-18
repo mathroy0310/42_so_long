@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 12:25:12 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/03 18:48:45 by maroy            ###   ########.fr       */
+/*   Updated: 2023/04/18 14:52:46 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_print_error(void)
 {
-	perror("\033[1;31m ERROR ");
+	ft_printf("\033[1;31m ERROR 🛑 ");
 	exit(EXIT_FAILURE);
 }
 

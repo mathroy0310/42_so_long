@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:43:56 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/05 17:29:51 by maroy            ###   ########.fr       */
+/*   Updated: 2023/04/18 14:51:46 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	check_is_rectangular(t_game *game)
 		{
 			if (backup != x)
 				ft_error(game,
-					"\033[1;31m ERROR : map is not rectangular	\033[0m");
+					"\033[1;31m ERROR 🛑 : map is not rectangular	\033[0m");
 		}
 		else
 			backup = x;
@@ -73,7 +73,7 @@ static void	check_is_surrounded_by_walls(t_game *g)
 	int		i;
 	char	*err;
 
-	err = "\033[1;31m ERROR : map is not surrounded by walls	\033[0m";
+	err = "\033[1;31m ERROR 🛑 : map is not surrounded by walls	\033[0m";
 	if (check_line(g->map[0]))
 		ft_error(g, err);
 	i = ft_get_height(g->map) - 1;
@@ -95,5 +95,5 @@ void	ft_valid_map(t_game *game)
 	check_is_rectangular(game);
 	check_is_surrounded_by_walls(game);
 	check_elements(game);
-	//check_is_map_possibe(game);
+	check_is_map_possibe(game);
 }

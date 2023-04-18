@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/05 17:41:21 by maroy            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:03:47 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static	void	ft_init_game(t_game *game)
 	game->nbcollect = 0;
 	game->wsize.x = ft_strlen(game->map[0]);
 	game->wsize.y = ft_get_height(game->map);
-
 	game->sprite.empty = mlx_xpm_file_to_image(game->mlx,
 			EMPTY_SPRITE, &width, &height);
 	game->sprite.wall = mlx_xpm_file_to_image(game->mlx,
@@ -96,12 +95,13 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 	{
-		perror("\033[1;31m ERROR : Must have more than 1 argc.	\033[0m");
+		ft_printf("\033[1;31m ERROR 🛑 : Must have more than 1 argc.	\033[0m");
 		exit(EXIT_FAILURE);
 	}
 	(void)argv;
 	ft_valid_file(argv[1]);
 	game.map = ft_get_map(argv[1]);
+	game.backup_map = ft_get_map(argv[1]);
 	if (game.map != NULL)
 	{
 		ft_valid_map(&game);
@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 		ft_init_game(&game);
 		ft_collectible(&game);
 		game.win = mlx_new_window(game.mlx, game.wsize.x * SPRITESIZE,
-				game.wsize.y * SPRITESIZE, "so_long");	
+				game.wsize.y * SPRITESIZE, "so_long");
 		ft_render(&game);
 	}
 	mlx_hook(game.win, 2, 1, ft_key_hook, &game);
