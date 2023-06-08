@@ -6,67 +6,37 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/18 15:03:47 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/07 15:22:57 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "../include/so_long.h"
 
-static int	ft_key_hook(int keycode, t_game *game)
+static void	ft_init_walls(t_game *game, int *width, int *height)
 {
-	int	x;
-
-	if (keycode == 0 || keycode == 123)
-		ft_move_left(game);
-	else if (keycode == 1 || keycode == 125)
-		ft_move_down(game);
-	else if (keycode == 2 || keycode == 124)
-		ft_move_right(game);
-	else if (keycode == 13 || keycode == 126)
-		ft_move_up(game);
-	else if (keycode == 53)
-	{
-		x = 0;
-		while (game->map[x])
-		{
-			free(game->map[x]);
-			x++;
-		}
-		free(game->map);
-		mlx_destroy_window(game->mlx, game->win);
-		exit(EXIT_FAILURE);
-	}
-	return (0);
+	game->sprite.wall.wall_n = mlx_xpm_file_to_image(game->mlx,
+			WALL_N_SPRITE, width, height);
+	game->sprite.wall.wall_s = mlx_xpm_file_to_image(game->mlx,
+			WALL_S_SPRITE, width, height);
+	game->sprite.wall.wall_e = mlx_xpm_file_to_image(game->mlx,
+			WALL_E_SPRITE, width, height);
+	game->sprite.wall.wall_o = mlx_xpm_file_to_image(game->mlx,
+			WALL_O_SPRITE, width, height);
+	game->sprite.wall.wall_no = mlx_xpm_file_to_image(game->mlx,
+			WALL_NO_SPRITE, width, height);
+	game->sprite.wall.wall_ne = mlx_xpm_file_to_image(game->mlx,
+			WALL_NE_SPRITE, width, height);
+	game->sprite.wall.wall_so = mlx_xpm_file_to_image(game->mlx,
+			WALL_SO_SPRITE, width, height);
+	game->sprite.wall.wall_se = mlx_xpm_file_to_image(game->mlx,
+			WALL_SE_SPRITE, width, height);
+	game->sprite.wall.wall1 = mlx_xpm_file_to_image(game->mlx,
+			WALL1_SPRITE, width, height);
+	game->sprite.wall.wall2 = mlx_xpm_file_to_image(game->mlx,
+			WALL2_SPRITE, width, height);
+	game->sprite.wall.wall3 = mlx_xpm_file_to_image(game->mlx,
+			WALL3_SPRITE, width, height);
 }
-
-void	ft_render(t_game *game)
-{
-	int		map_x;
-	int		map_y;
-
-	map_x = 0;
-	while (game->wsize.x > map_x)
-	{
-		map_y = 0;
-		while (game->wsize.y > map_y)
-		{
-			if (game->map[map_y][map_x] == '0')
-				game->img = game->sprite.empty;
-			else if (game->map[map_y][map_x] == '1')
-				game->img = game->sprite.wall;
-			else if (game->map[map_y][map_x] == 'E')
-				game->img = game->sprite.exit;
-			else if (game->map[map_y][map_x] == 'C')
-				game->img = game->sprite.collectible;
-			if (map_y == game->player_pos.y && map_x == game->player_pos.x)
-				game->img = game->sprite.player;
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->img, map_x * SPRITESIZE, map_y * SPRITESIZE);
-			map_y++;
-		}
-		map_x++;
-	}
-}	
 
 static	void	ft_init_game(t_game *game)
 {
@@ -77,14 +47,17 @@ static	void	ft_init_game(t_game *game)
 	game->nbcollect = 0;
 	game->wsize.x = ft_strlen(game->map[0]);
 	game->wsize.y = ft_get_height(game->map);
+	ft_init_walls(game, &width, &height);
 	game->sprite.empty = mlx_xpm_file_to_image(game->mlx,
 			EMPTY_SPRITE, &width, &height);
-	game->sprite.wall = mlx_xpm_file_to_image(game->mlx,
-			WALL_SPRITE, &width, &height);
 	game->sprite.player = mlx_xpm_file_to_image(game->mlx,
 			PLAYER_SPRITE, &width, &height);
+	game->sprite.ennemy = mlx_xpm_file_to_image(game->mlx,
+			ENNEMY_SPRITE, &width, &height);
 	game->sprite.exit = mlx_xpm_file_to_image(game->mlx,
 			EXIT_SPRITE, &width, &height);
+	game->sprite.exitopen = mlx_xpm_file_to_image(game->mlx,
+			OPEN_EXIT_SPRITE, &width, &height);
 	game->sprite.collectible = mlx_xpm_file_to_image(game->mlx,
 			COLLECTIBLE_SPRITE, &width, &height);
 }
@@ -113,6 +86,7 @@ int	main(int argc, char **argv)
 		ft_render(&game);
 	}
 	mlx_hook(game.win, 2, 1, ft_key_hook, &game);
+	mlx_hook(game.win, 17, (1L << 17), ft_escape, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 13:43:56 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/18 14:51:46 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/07 14:14:04 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "../include/so_long.h"
 
 void	ft_error(t_game *g, char *err)
 {

@@ -6,11 +6,11 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 11:59:08 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/18 14:49:14 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/07 14:13:59 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "../include/so_long.h"
 
 static	int	ft_ext_cmp(char *str, char *to_find)
 {

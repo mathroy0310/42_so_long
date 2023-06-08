@@ -6,11 +6,11 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:26:03 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/18 15:09:07 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/07 14:14:03 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "../include/so_long.h"
 
 static char	*ft_err_message(t_game_map *map)
 {
@@ -70,8 +70,8 @@ void	check_elements(t_game *game)
 				map.c++;
 			else if (game->map[map.s.y][map.s.x] == 'E')
 				map.e++;
-			else if (game->map[map.s.y][map.s.x] != '1' &&
-						game->map[map.s.y][map.s.x] != '0')
+			else if (game->map[map.s.y][map.s.x] != '1'
+					&& game->map[map.s.y][map.s.x] != '0')
 				ft_unknown_elements(game, game->map[map.s.y][map.s.x]);
 			map.s.x++;
 		}

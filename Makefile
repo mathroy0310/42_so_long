@@ -6,26 +6,26 @@
 #    By: maroy <maroy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 14:06:34 by maroy             #+#    #+#              #
-#    Updated: 2023/04/05 16:57:55 by maroy            ###   ########.fr        #
+#    Updated: 2023/06/07 15:23:28 by maroy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 
-MAKELIBFT	= $(MAKE) -C libs/libft
+MAKELIBFT	= $(MAKE) -C libft/
 
 
 
-CFILES		= main.c player_movement.c file_checker.c get_map.c  map_checker.c  map_checker_utils.c collect.c check_map_possible.c    
+CFILES		= main.c player_movement.c file_checker.c get_map.c  map_checker.c  map_checker_utils.c collect.c check_map_possible.c render.c walls.c keyhook.c
 
 SRCDIR		= src/
-INCDIR	=	libs/
-INCS		= libs/so_long.h
+INCDIR	=	include/
+INCS		= include/so_long.h
 SRCS		= $(addprefix $(SRCDIR)/, $(CFILES))
 OBJS 		= $(SRCS:.c=.o)
 
 CC			= clang
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror  -g
 RM			= rm -rf
 
 
@@ -43,7 +43,7 @@ $(NAME):	$(OBJS)
 			@echo ""
 			@echo '\033[1;37m' "- Making $(NAME)... -"$(NONE)
 			@echo '\033[1;30m' ""
-			$(CC) $(CFLAGS) $(OBJS) libs/libft/libft.a mlx/libmlx.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) libft/libft.a mlx/libmlx.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 			@echo ""
 			@echo '\033[32m' "- Compiled -"$(NONE)
 	

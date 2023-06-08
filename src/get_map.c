@@ -6,11 +6,11 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 12:25:12 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/18 14:52:46 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/07 14:14:00 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "../include/so_long.h"
 
 static void	ft_print_error(void)
 {

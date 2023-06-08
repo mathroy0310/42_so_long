@@ -6,11 +6,11 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:35:01 by maroy             #+#    #+#             */
-/*   Updated: 2023/04/18 15:05:31 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/08 14:10:12 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/so_long.h"
+#include "../include/so_long.h"
 #include <unistd.h>
 
 static int	ft_c_count(t_game *game)
@@ -44,12 +44,15 @@ static int	ft_c_count(t_game *game)
 static void	floodfill(t_game *game_backup, int y, int x, int *nb_c)
 {
 	if (game_backup->backup_map[y][x] == '1'
+		|| game_backup->backup_map[y][x] == 'E'
 		|| game_backup->backup_map[y][x] == 'f')
+	{
+		if (game_backup->backup_map[y][x] == 'E')
+			game->nbexit += 1;
 		return ;
+	}
 	if (game_backup->backup_map[y][x] == 'C')
 		*nb_c -= 1;
-	if (game_backup->backup_map[y][x] == 'E')
-		game_backup->nbexit = 1;
 	game_backup->backup_map[y][x] = 'f';
 	floodfill(game_backup, y - 1, x, nb_c);
 	floodfill(game_backup, y + 1, x, nb_c);
@@ -63,7 +66,9 @@ void	check_is_map_possibe(t_game *game)
 
 	nb_c = 0;
 	nb_c = ft_c_count(game);
+	ft_printf("print nb collectible (%d)\n", nb_c);
 	floodfill(game, game->player_pos.y, game->player_pos.x, &nb_c);
-	if (nb_c != 0)
+	ft_printf("print nb exit (%d)\n", game->nbexit);
+	if (nb_c != 0 || game->nbexit == 0)
 		ft_error(game, "\033[1;31m ERROR 🛑 : Map is Impossible.	\033[0m");
 }
