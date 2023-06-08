@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:35:01 by maroy             #+#    #+#             */
-/*   Updated: 2023/06/08 14:10:12 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/08 14:18:36 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	floodfill(t_game *game_backup, int y, int x, int *nb_c)
 		|| game_backup->backup_map[y][x] == 'f')
 	{
 		if (game_backup->backup_map[y][x] == 'E')
-			game->nbexit += 1;
+			game_backup->nbexit += 1;
 		return ;
 	}
 	if (game_backup->backup_map[y][x] == 'C')
