@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:35:01 by maroy             #+#    #+#             */
-/*   Updated: 2023/06/08 14:18:36 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/13 16:31:15 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ void	check_is_map_possibe(t_game *game)
 
 	nb_c = 0;
 	nb_c = ft_c_count(game);
-	ft_printf("print nb collectible (%d)\n", nb_c);
 	floodfill(game, game->player_pos.y, game->player_pos.x, &nb_c);
-	ft_printf("print nb exit (%d)\n", game->nbexit);
 	if (nb_c != 0 || game->nbexit == 0)
 		ft_error(game, "\033[1;31m ERROR 🛑 : Map is Impossible.	\033[0m");
 }

@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 11:59:08 by maroy             #+#    #+#             */
-/*   Updated: 2023/06/07 14:13:59 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/13 16:30:38 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	ft_valid_file(char *file_line)
 		}
 		file_line++;
 	}
-	printf("\033[1;31m ERROR 🛑 : file is not valid.	\033[0m");
+	ft_printf("\033[1;31m ERROR 🛑 : file is not valid.	\033[0m");
 	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:56:56 by maroy             #+#    #+#             */
-/*   Updated: 2023/06/07 15:22:57 by maroy            ###   ########.fr       */
+/*   Updated: 2023/06/13 16:30:19 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	main(int argc, char **argv)
 		ft_printf("\033[1;31m ERROR 🛑 : Must have more than 1 argc.	\033[0m");
 		exit(EXIT_FAILURE);
 	}
-	(void)argv;
 	ft_valid_file(argv[1]);
 	game.map = ft_get_map(argv[1]);
 	game.backup_map = ft_get_map(argv[1]);
