@@ -44,7 +44,6 @@ Le jeu se lancera avec la carte spécifiée dans le fichier `map.ber`, et vous p
 ## Ressources
 
 - [Documentation de l'école 42](https://cdn.intra.42.fr/pdf/pdf/93074/fr.subject.pdf)
-- [GitHub du projet So_Long](https://example.com/so_long)
 
 ## Auteur
 
