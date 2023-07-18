@@ -19,7 +19,11 @@ Pour utiliser ce projet, suivez les étapes suivantes :
 Pour jouer au jeu So_Long, exécutez la commande suivante :
 
 ```bash
-./so_long map.ber
+$ make
+```
+
+```bash
+$ ./so_long map.ber
 ```
 
 Remplacez `map.ber` par le chemin vers le fichier de la carte que vous souhaitez charger.
