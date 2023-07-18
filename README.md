@@ -18,7 +18,7 @@ Pour utiliser ce projet, suivez les étapes suivantes :
 
 Pour jouer au jeu So_Long, exécutez la commande suivante :
 
-```
+```bash
 ./so_long map.ber
 ```
 
